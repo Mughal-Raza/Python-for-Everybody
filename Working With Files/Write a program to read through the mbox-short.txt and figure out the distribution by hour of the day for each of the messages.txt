@@ -1,0 +1,19 @@
+name = input("Enter file:")
+if len(name) < 1:
+    name = "mbox-short.txt"
+handle = open(name)
+counts = dict()
+for line in handle:
+    if not line.startswith("From "):
+        continue
+    words = line.split()
+    hours = words[5].split(':')
+    counts[hours[0]] = counts.get(hours[0], 0)+1
+
+temp = list()
+for key, val in counts.items():
+    newt = (key, val)
+    temp.append(newt)
+tmp = sorted(temp)
+for key, val in tmp:
+    print(key,val)
